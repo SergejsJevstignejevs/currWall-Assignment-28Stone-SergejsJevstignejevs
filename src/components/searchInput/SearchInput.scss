@@ -1,0 +1,38 @@
+@import "../../styles/Variables.scss";
+
+.SearchInput {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 10px 0px;
+    width: 290px;
+    height: 50px;
+    color: $main-color;
+    border-radius: 25px;
+    border: 1px solid $main-color;
+
+    &.error {
+        border: 1px solid red;
+    }
+
+    &:focus {
+        outline: none;
+        border: 2px solid $main-color;  
+        box-shadow: 0px 0px 10px $main-color;
+    
+        &.error {
+            border: 1px solid red;
+            box-shadow: 0px 0px 10px red;
+        }
+    }
+}
+
+.errorText {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    color: red;
+    font-weight: bold;
+}

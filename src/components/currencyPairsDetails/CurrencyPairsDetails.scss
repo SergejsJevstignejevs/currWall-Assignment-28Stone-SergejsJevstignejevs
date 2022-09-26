@@ -1,0 +1,36 @@
+@import "../../styles/Variables.scss";
+
+.CurrencyPairsDetails{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 25px;
+    position: absolute;
+    color: $main-color;
+    height: 400px;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, -65%);
+    overflow: auto;
+
+    ul {
+        li{
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100px;
+            padding: 10px;
+            border-right: 1px solid $main-color;
+            border-left: 1px solid $main-color;
+            border-bottom: 1px solid $main-color;
+    
+            &:hover {
+                cursor: pointer;
+                background-color: $sub-color;
+                color: white;
+                box-shadow: 0 0 10px $sub-color;
+            }
+        }
+    }
+}
