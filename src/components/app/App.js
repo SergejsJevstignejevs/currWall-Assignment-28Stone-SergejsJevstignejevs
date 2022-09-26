@@ -15,6 +15,7 @@ export default function App() {
   const [invalidInput, setInvalidInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  const [intervalId, setIntervalId] = useState(null);
   const [initalRender, setInitalRender] = useState(true);
 
   const [currencyPair, setCurrencyPair] = useState({data: ""});
@@ -22,7 +23,25 @@ export default function App() {
 
   const regex = new RegExp("^[a-zA-Z0-9]{3,6}\/?[a-zA-Z]{3}$");
 
-  const { getCurrencyPairRates } = useForexServise();
+  const { process, setProcess, getCurrencyPairRates } = useForexServise();
+
+  const fetchData = (currencyPair) => {
+
+    setProcess("loading");
+    getCurrencyPairRates(currencyPair.data.replace("/", ""))
+    .then((data) => {
+      setIncorrectInput(false);
+      setInvalidInput(false);
+      setCurrencyPairRates(data);
+      setProcess("success");
+    })
+    .catch(() => {
+      setInvalidInput(true);
+      setIncorrectInput(true);
+      setProcess("error");
+    });
+
+  }
 
   useEffect(() => {
 
@@ -34,29 +53,48 @@ export default function App() {
 
     if(!initalRender){
 
+      setProcess("loading");
+
       if(!regex.test(currencyPair.data)){
 
-        console.log("bad");
+        setProcess("error");
         setIncorrectInput(true);
         setInvalidInput(false);
         inputRef.current.focus();
   
       }
       else {
-  
-        console.log("ok");
-        getCurrencyPairRates(currencyPair.data.replace("/", ""))
-          .then((data) => {
-            setIncorrectInput(false);
-            setInvalidInput(false);
-            setCurrencyPairRates(data);
-          })
-          .catch(() => {
-            setInvalidInput(true);
-            setIncorrectInput(true);
-          });
-  
+
+        if(intervalId === null) {
+
+          let idInterval = setInterval(() => {
+            fetchData(currencyPair)
+          }, 5000);
+
+          setIntervalId(idInterval);
+
+        }
+        else {
+
+          clearInterval(intervalId);
+
+          setIntervalId(null);
+
+          let idInterval = setInterval(() => {
+            fetchData(currencyPair)
+          }, 5000);
+
+          setIntervalId(idInterval);
+
+        }
+
       }
+
+    }
+
+    return () => {
+
+      clearInterval(intervalId);
 
     }
 
@@ -65,7 +103,8 @@ export default function App() {
   return (
     <div className="App">
       <DayLiveWall 
-        data={currencyPairRates}/>
+        data={currencyPairRates}
+        process={process}/>
       <SearchInput 
         inputValue={inputValue} 
         setInputValue={setInputValue} 

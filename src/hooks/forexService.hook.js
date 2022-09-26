@@ -1,8 +1,8 @@
 import useHttp from "./http.hook"
 
 export default function useForexService(){
-
-    const { request } = useHttp();
+    
+    const { request, process, setProcess } = useHttp();
 
     const _apiBase = "https://financialmodelingprep.com/api/v3/fx";
     const _apiKey = "a77c9c7342f15053304e639d072acaf3";
@@ -80,6 +80,6 @@ export default function useForexService(){
 
     }
 
-    return { getCurrencyPairRates, getCurrencyPairs };
+    return { process, setProcess, getCurrencyPairRates, getCurrencyPairs };
 
 }

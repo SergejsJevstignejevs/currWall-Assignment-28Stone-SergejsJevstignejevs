@@ -26,14 +26,18 @@ export default function DayLiveWall(props) {
     <div className="DayLiveWall">
       <div className="DayLiveWall__rates">
         {
-          data.length !== 0 ? 
-            elements :
+          props.process === "waiting" ?
             <>
-              <div className="initial">
+              <div className="process">
                 Enter Currency Pair!
               </div>
               <span className="arrowDown">&darr;</span>
-            </>
+            </> :
+          props.process === "loading" ?
+            <div className="process">
+              Loading!
+            </div> :
+          elements
         }
       </div>
     </div>

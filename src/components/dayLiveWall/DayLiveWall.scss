@@ -17,7 +17,7 @@
         width: 320px;
 
         div{
-            &.initial{
+            &.process{
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
@@ -29,7 +29,7 @@
                 font-weight: bold;
                 border-radius: 25px;
                 border: 1px solid $main-color;
-                box-shadow: 0px 0px 10px $main-color; ;
+                box-shadow: 0px 0px 10px $main-color;
             }
         }
 
