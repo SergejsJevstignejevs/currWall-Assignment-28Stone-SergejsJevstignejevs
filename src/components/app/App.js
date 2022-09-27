@@ -65,30 +65,19 @@ export default function App() {
       }
       else {
 
-        if(intervalId === null) {
-
-          fetchData(currencyPair);
-          let idInterval = setInterval(() => {
-            fetchData(currencyPair)
-          }, 5000);
-
-          setIntervalId(idInterval);
-
-        }
-        else {
+        if(intervalId !== null){
 
           clearInterval(intervalId);
-
           setIntervalId(null);
 
-          fetchData(currencyPair);
-          let idInterval = setInterval(() => {
-            fetchData(currencyPair)
-          }, 5000);
-
-          setIntervalId(idInterval);
-
         }
+
+        fetchData(currencyPair);
+        let idInterval = setInterval(() => {
+          fetchData(currencyPair)
+        }, 5000);
+
+        setIntervalId(idInterval);
 
       }
 
