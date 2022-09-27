@@ -67,6 +67,7 @@ export default function App() {
 
         if(intervalId === null) {
 
+          fetchData(currencyPair);
           let idInterval = setInterval(() => {
             fetchData(currencyPair)
           }, 5000);
@@ -80,6 +81,7 @@ export default function App() {
 
           setIntervalId(null);
 
+          fetchData(currencyPair);
           let idInterval = setInterval(() => {
             fetchData(currencyPair)
           }, 5000);
