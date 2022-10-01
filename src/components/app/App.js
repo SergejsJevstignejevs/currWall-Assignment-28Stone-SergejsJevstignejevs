@@ -53,6 +53,13 @@ export default function App() {
 
     if(!initalRender){
 
+      if(intervalId !== null){
+
+        clearInterval(intervalId);
+        setIntervalId(null);
+
+      }
+
       setProcess("loading");
 
       if(!regex.test(currencyPair.data)){
@@ -64,13 +71,6 @@ export default function App() {
   
       }
       else {
-
-        if(intervalId !== null){
-
-          clearInterval(intervalId);
-          setIntervalId(null);
-
-        }
 
         fetchData(currencyPair);
         let idInterval = setInterval(() => {

@@ -1,3 +1,25 @@
+------------------------------------------------
+--
+This task was solved for evaluation for 28Stone
+--
+------------------------------------------------
+--
+App Usage 
+--
+------------------------------------------------
+
+Data provided by Financial Modeling Prep: https://financialmodelingprep.com/developer/docs/
+
+  1. You can start App troughth `npm start`.
+  2. At the middle in the bottom you can insert `Currency Pair` into input field and then press `Seacrh Rates` button which is below input.
+  3. As well in the right top corner from `Live Wall` you can press on `Show Possible Currency Pairs` to see all possible `Currency Pairs` and click on one of them.
+  After clicking selected `Currency Pair` will be set into input and you can simply press button `Seacrh Rates`.
+  
+  P.S. Due to `Free Plan` provided by Forex, api key only have 250 requests per day, so values in the `Live Wall` changes only every 5 seconds. 
+  If you want to change it, you can go to file `src/hooks/forexService.hook` and change variable `_apiKey` to your own api key.
+  And in the `src/components/app/App.js` change in the useEffect[currencyPair] inteval value from 5000ms to another.
+
+------------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
